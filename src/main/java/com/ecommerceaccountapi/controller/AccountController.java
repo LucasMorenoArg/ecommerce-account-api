@@ -28,9 +28,4 @@ public class AccountController {
     public boolean deteleId(@PathVariable Long id){
         return accountService.delete(id);
     }
-
-
-
-
-
 }
