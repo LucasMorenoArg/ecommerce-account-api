@@ -2,6 +2,7 @@ package com.ecommerceaccountapi.controller;
 
 import com.ecommerceaccountapi.entity.Account;
 import com.ecommerceaccountapi.service.AccountService;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/Account")
 public class AccountController {
 
-    private final AccountService accountService;
+    private @NonNull AccountService accountService;
 
     @GetMapping()
     public Iterable<Account> getAll(){
@@ -22,6 +23,7 @@ public class AccountController {
     }
     @PostMapping("/create")
     public Account createAccount (@RequestBody Account account){
+        System.out.println(account);
         return accountService.save(account);
     }
     @DeleteMapping("/deleteId/{id}")
