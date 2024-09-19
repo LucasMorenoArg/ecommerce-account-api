@@ -4,18 +4,36 @@ import com.ecommerceaccountapi.entity.Account;
 import com.ecommerceaccountapi.service.AccountService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.hibernate.mapping.List;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+@Setter
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/Account")
 public class AccountController {
 
-    private @NonNull AccountService accountService;
+    private AccountService accountService;
+
+    public AccountController(AccountService accountService) {
+        this.accountService = accountService;
+    }
+
 
     @GetMapping()
     public Iterable<Account> getAll(){
-        return accountService.getAll();
+
+        Iterable<Account> lista = null;
+
+        try {
+
+            lista = accountService.getAll();
+
+        }catch (NullPointerException n){
+            n.printStackTrace();
+        }
+        return lista;
     }
     @GetMapping("/byId/{id}")
     public Account getId(@PathVariable Long id){

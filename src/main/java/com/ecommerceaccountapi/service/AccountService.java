@@ -4,18 +4,26 @@ import com.ecommerceaccountapi.entity.Account;
 import com.ecommerceaccountapi.repository.AccountRepository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 
-@RequiredArgsConstructor
+
+@Setter
 @Service
 public class AccountService {
 
-    private @NonNull AccountRepository accountRepository;
+    private AccountRepository accountRepository;
+
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     public Iterable<Account> getAll() {
+        System.out.println();
         return accountRepository.findAll();
     }
 
